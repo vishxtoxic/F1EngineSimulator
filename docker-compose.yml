@@ -1,0 +1,18 @@
+services:
+  dev:
+    build: .
+    volumes:
+      - .:/app
+      - ./outputs:/app/outputs
+    command: bash
+    tty: true
+    stdin_open: true
+
+  test:
+    build: .
+    volumes:
+      - .:/app
+    command: pytest
+
+  # volumes:
+  #   fastf1-cache:
