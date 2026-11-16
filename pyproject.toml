@@ -1,19 +1,38 @@
 [build-system]
-requires = ["setuptools>=61"]
+requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "F1EngineSimulator"
-version = "0.0.1"
+name = "f1-engine-simulator"
+version = "0.1.0"
+description = "A longitudinal F1 vehicle performance simulator"
+readme = "README.md"
 requires-python = ">=3.10"
-dependencies = ["numpy"]
-license = {text = "MIT"}
+license = "MIT"
+authors = [{name = "vishxtoxic"}]
+dependencies = ["numpy>=1.24"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+[project.urls]
+Homepage = "https://github.com/vishxtoxic/F1EngineSimulator"
+Repository = "https://github.com/vishxtoxic/F1EngineSimulator"
 
 [project.optional-dependencies]
-dev = ["pytest"]
+dev = ["pytest", "build", "twine"]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

@@ -1,25 +1,25 @@
-import pytest
+import math
 
 
-@pytest.mark.skip(reason="TODO")
 def test_drag_scales_with_speed_squared() -> None:
-    # Check drag scales with the square of air speed.
-    pass
+    from enginesim.physics import drag_force
+
+    assert math.isclose(drag_force(1, 20, 1), 4 * drag_force(1, 10, 1))
 
 
-@pytest.mark.skip(reason="TODO")
 def test_zero_speed_zero_drag() -> None:
-    # Check zero air speed produces zero drag.
-    pass
+    from enginesim.physics import drag_force
+
+    assert drag_force(1, 0, 1) == 0
 
 
-@pytest.mark.skip(reason="TODO")
 def test_rolling_force_value() -> None:
-    # Check rolling force value.
-    pass
+    from enginesim.physics import rolling_force
+
+    assert math.isclose(rolling_force(1000, 0.01), 98.1)
 
 
-@pytest.mark.skip(reason="TODO")
 def test_traction_limit_value() -> None:
-    # Check traction limit value.
-    pass
+    from enginesim.physics import max_traction_force
+
+    assert math.isclose(max_traction_force(1000, 1, 0.5), 4905)

@@ -1,25 +1,25 @@
-import pytest
+import math
 
 
-@pytest.mark.skip(reason="TODO")
 def test_rpm_to_rad_s() -> None:
-    # Check rpm conversion to rad/s.
-    pass
+    from enginesim.units import rpm_to_rad_s
+
+    assert math.isclose(rpm_to_rad_s(60), 2 * math.pi)
 
 
-@pytest.mark.skip(reason="TODO")
 def test_rad_s_to_rpm() -> None:
-    # Check rad/s conversion to rpm.
-    pass
+    from enginesim.units import rad_s_to_rpm
+
+    assert math.isclose(rad_s_to_rpm(2 * math.pi), 60)
 
 
-@pytest.mark.skip(reason="TODO")
 def test_kmh_to_ms() -> None:
-    # Check km/h conversion to m/s.
-    pass
+    from enginesim.units import kmh_to_ms
+
+    assert kmh_to_ms(36) == 10
 
 
-@pytest.mark.skip(reason="TODO")
 def test_ms_to_kmh() -> None:
-    # Check m/s conversion to km/h.
-    pass
+    from enginesim.units import ms_to_kmh
+
+    assert ms_to_kmh(10) == 36

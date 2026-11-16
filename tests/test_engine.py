@@ -1,25 +1,36 @@
+import math
+
+import numpy as np
 import pytest
 
 
-@pytest.mark.skip(reason="TODO")
 def test_power_equals_torque_times_omega() -> None:
-    # Check power equals torque multiplied by angular speed.
-    pass
+    from enginesim.engine import Engine
+
+    engine = Engine.from_parametric(100_000, 8_000, 12_000, 1_000)
+    rpm = 8_000
+    assert math.isclose(engine.power(rpm), engine.torque(rpm) * rpm * 2 * math.pi / 60)
 
 
-@pytest.mark.skip(reason="TODO")
 def test_peak_at_set_rpm() -> None:
-    # Check peak power occurs at the configured rpm.
-    pass
+    from enginesim.engine import Engine
+
+    engine = Engine.from_parametric(100_000, 8_000, 12_000, 1_000)
+    assert engine.power(8_000) == 100_000
 
 
-@pytest.mark.skip(reason="TODO")
 def test_zero_above_limiter() -> None:
-    # Check output is zero above the limiter.
-    pass
+    from enginesim.engine import Engine
+
+    engine = Engine.from_parametric(100_000, 8_000, 12_000, 1_000)
+    assert engine.power(12_001) == 0
+    assert engine.torque(12_001) == 0
 
 
-@pytest.mark.skip(reason="TODO")
 def test_bad_inputs_raise() -> None:
-    # Check invalid engine inputs raise an error.
-    pass
+    from enginesim.engine import Engine
+
+    with pytest.raises(ValueError):
+        Engine.from_parametric(0, 8_000, 12_000, 1_000)
+    with pytest.raises(ValueError):
+        Engine.from_points(np.array([2_000, 1_000]), np.array([100, 100]))

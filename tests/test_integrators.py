@@ -1,13 +1,22 @@
-import pytest
+import math
+
+import numpy as np
 
 
-@pytest.mark.skip(reason="TODO")
+def _decay(_t: float, state: np.ndarray) -> np.ndarray:
+    del _t
+    return -state
+
+
 def test_euler_matches_exponential_decay() -> None:
-    # Check Euler integration against exponential decay.
-    pass
+    from enginesim.integrators import euler_step
+
+    result = euler_step(np.array([1.0]), _decay, 0, 0.1)
+    assert np.allclose(result, [0.9])
 
 
-@pytest.mark.skip(reason="TODO")
 def test_rk4_matches_exponential_decay() -> None:
-    # Check RK4 integration against exponential decay.
-    pass
+    from enginesim.integrators import rk4_step
+
+    result = rk4_step(np.array([1.0]), _decay, 0, 0.1)
+    assert np.allclose(result, [math.e ** -0.1], rtol=1e-4)
